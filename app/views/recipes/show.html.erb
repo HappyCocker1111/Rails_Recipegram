@@ -48,12 +48,27 @@
                     </div>
                 </div>
             </div>
+
+            <div class="column is-4">
+                <article class="panel is-link">
+                    <p class="panel-heading">
+                        By <%= @recipe.user.username %>
+                    </p>
+                    <div class="panel-block">
+                        <p class="control">
+                            <%= @recipe.user.profile %>
+                        </p>
+                    </div>
+
+                    <%= link_to user_path(@recipe.user) do %>
+                        <span>
+                            <i class="fas fa-user" aria-hidden="true"></i>
+                        </span>
+                        <%= @recipe.user.username %>さんのページ
+                    <% end %>
+                </article>
+            </div>
         </div>
     </div>
 </section>
 
-<%= @recipe.user.username %>
-
-<%= link_to user_path(@recipe.user) do %>
-    <%= @recipe.user.username %>さんのページ
-<% end %>
