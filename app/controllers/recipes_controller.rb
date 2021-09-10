@@ -32,6 +32,12 @@ class RecipesController < ApplicationController
     redirect_to recipe_path(@recipe)
   end
 
+  def destroy
+      recipe = Recipe.find(params[:id])
+      recipe.destroy
+      redirect_to recipes_path(@recipe), notice: "レシピを削除しました"
+  end
+
   #コントローラーの中で飲み実行
   private
   def recipe_params
