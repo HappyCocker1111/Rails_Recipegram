@@ -27,6 +27,10 @@ class RecipesController < ApplicationController
 
   def edit
     @recipe = Recipe.find(params[:id])
+    #現在のログインユーザーとレシピに紐づいたユーザーが同じか判定
+    if @recipe.user != current_user
+      redirect_to recipes_path, alert: '不正なアクセスです'
+    end
   end
 
   def update
