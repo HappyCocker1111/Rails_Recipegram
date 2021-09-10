@@ -21,8 +21,13 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     #誰が投稿したのか
     @recipe.user_id = current_user.id
-    @recipe.save
-    redirect_to recipe_path(@recipe)
+
+    #空投稿された時の条件分岐
+    if @recipe.save
+      redirect_to recipe_path(@recipe)
+    else
+      render :new
+    end
   end
 
   def edit
@@ -35,8 +40,11 @@ class RecipesController < ApplicationController
 
   def update
     @recipe = Recipe.find(params[:id])
-    @recipe.update(recipe_params)
+    if @recipe.update(recipe_params)
     redirect_to recipe_path(@recipe)
+    else
+      render :edit
+    end
   end
 
   def destroy
