@@ -1,4 +1,7 @@
 class RecipesController < ApplicationController
+    #ログインしていないユーザーindex以外はアクセスできないようにする
+    before_action :authenticate_user!, except: [:index]
+
   def index
     @recipes = Recipe.all
   end
